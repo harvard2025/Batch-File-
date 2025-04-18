@@ -7,7 +7,8 @@ color 0A
 :: ============================================
 set GITHUB_REPO_URL=https://github.com/harvard2025/Batch-File-.git
 set COMMIT_MESSAGE=Auto commit by batch script
-set BRANCH_NAME=main
+:: Try 'master' if 'main' doesn't work, or check your default branch
+set BRANCH_NAME=master
 :: ============================================
 
 echo.
@@ -57,9 +58,17 @@ if errorlevel 1 (
     )
 )
 
-:: Step 5: Push to GitHub
+:: Step 5: Rename branch if needed and push
+echo Checking and setting branch...
+git branch -M %BRANCH_NAME%
+if errorlevel 1 (
+    echo Error renaming branch
+    pause
+    exit /b 1
+)
+
 echo Pushing to %BRANCH_NAME% branch...
-git push --set-upstream origin %BRANCH_NAME%
+git push --force --set-upstream origin %BRANCH_NAME%
 if errorlevel 1 (
     echo Error pushing to GitHub
     pause
