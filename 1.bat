@@ -1,6 +1,6 @@
-@echo off
+
 title Auto GitHub Uploader
-color 0A
+color 0C
 
 :: ============================================
 :: CONFIGURE THESE VARIABLES FOR YOUR PROJECT
